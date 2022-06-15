@@ -23,3 +23,15 @@ jobs:
         run: npm install
       - name: Run tests
         run: npm test
+      - name: Heroku Docker Container Deploy
+        uses: lucassarcanjo/heroku-deploy@2.1.17
+        if: ${{ github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main' }}
+        with:
+          # Email Linked to your Heroku Account
+          email: ${{secrets.HEROKU_EMAIL}}
+          # Your Heroku API Key
+          api_key: ${{secrets.HEROKU_API_KEY}}
+          # Your Heroku App Name
+          app_name: "app-verdinho-pagamento"
+          # Dokerfile path
+          dockerfile_path: Dockerfile
