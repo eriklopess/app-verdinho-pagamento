@@ -24,8 +24,8 @@ jobs:
       - name: Run tests
         run: npm test
       - name: Heroku Docker Container Deploy
-      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         if: ${{ github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main' }}
+      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "app-verdinho-pagamento" #Must be unique in Heroku
