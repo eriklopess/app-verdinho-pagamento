@@ -32,6 +32,10 @@ class App {
     this.app.use(routes);
   }
 
+  public getApp(): express.Application {
+    return this.app;
+  }
+
   public start(PORT: string | number): void {
     this.app.listen(PORT, () => {
       console.log(`Server on port ${PORT}`);
