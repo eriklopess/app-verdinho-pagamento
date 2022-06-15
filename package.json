@@ -1,0 +1,26 @@
+{
+  "name": "app-verdinho-pagamento",
+  "version": "1.0.0",
+  "description": "Esta aplicação tem o intuito de simular um aplicativo de pagamento.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install:apps": "sudo ./install.sh",
+    "compose:up": "(cd app && docker-compose up -d --build)",
+    "compose:down": "(cd app && docker-compose down --remove-orphans)",
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eriklopess/app-verdinho-pagamento.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eriklopess/app-verdinho-pagamento/issues"
+  },
+  "homepage": "https://github.com/eriklopess/app-verdinho-pagamento#readme"
+}
