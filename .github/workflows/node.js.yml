@@ -24,10 +24,3 @@ jobs:
         run: npm run install:apps
       - name: Run tests
         run: npm test
-      - name: Deploy app
-        if: ${{ github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main' }}
-      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "app-verdinho-pagamento" #Must be unique in Heroku
-          heroku_email: ${{secrets.HEROKU_EMAIL}}
