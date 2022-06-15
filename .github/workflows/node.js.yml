@@ -2,29 +2,32 @@ name: AppVerdinho Workflow
 
 on:
   push:
-    branches: 
+    branches:
       - main
       - master
   pull_request:
-    branches: 
+    branches:
       - main
       - master
-      
 jobs:
   build:
     runs-on: ubuntu-latest
-      
     strategy:
       matrix:
         node-version: [16.x]
-        
     steps:
       - uses: actions/checkout@v2
       - name: Build the stack
         run: cd app && docker-compose up -d --build
-      
       - uses: actions/checkout@v1
       - name: Install dependencies
         run: npm run install:apps
       - name: Run tests
         run: npm test
+      - name: Deploy app
+        if: ${{ github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main' }}
+      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "app-verdinho-pagamento" #Must be unique in Heroku
+          heroku_email: ${{secrets.HEROKU_EMAIL}}

@@ -1,5 +1,6 @@
 import App from './App';
+import 'dotenv/config';
 
 const server = new App();
 
-server.start(3001);
+server.start(Number(process.env.PORT));
