@@ -1,5 +1,5 @@
 import request from 'supertest';
-import App from '../app/backend/src/api/App';
+import App from '../src/api/App';
 
 describe('GET /', () => {
   const app = new App().getApp();

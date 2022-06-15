@@ -1,3 +1,5 @@
 build:
   docker:
-    web: app/docker-compose.yml
+    web: Dockerfile
+run:
+  web: ts-node ./src/api/index.ts
