@@ -1,4 +1,6 @@
 #!/bin/bash
+printf "Installing dependencies...\n"
+npm_config_loglevel=silent npm i --prefix . --cache $cacheFolderFront
 
 printf "Installing client dependencies...\n"
 clientFolder="./app/frontend"
