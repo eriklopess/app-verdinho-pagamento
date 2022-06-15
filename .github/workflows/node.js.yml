@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build the stack
-        run: cd app && docker-compose up -d --build
+        run: docker-compose up -d --build
       - uses: actions/checkout@v1
       - name: Install dependencies
         run: npm run install:apps
