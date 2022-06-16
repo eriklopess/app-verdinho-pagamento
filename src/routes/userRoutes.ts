@@ -3,6 +3,6 @@ import { userController } from '../Controllers';
 
 const userRouter = Router();
 
-userRouter.get('/api/users/:id', userController.findById);
+userRouter.post('/api/users', userController.create);
 
 export default userRouter;

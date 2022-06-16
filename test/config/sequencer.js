@@ -1,3 +1,5 @@
+/* eslint-disable class-methods-use-this */
+/* eslint-disable import/no-extraneous-dependencies */
 const Sequencer = require('@jest/test-sequencer').default;
 
 class CustomSequencer extends Sequencer {

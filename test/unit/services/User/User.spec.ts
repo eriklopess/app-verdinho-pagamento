@@ -1,11 +1,11 @@
 import UserService from '../../../../src/Services/User';
-import { MockContext, Context, createMockContext } from '../context';
+import { MockContextPrisma, Context, createMockContextPrisma } from '../../../context';
 
-let mockCtx: MockContext;
+let mockCtx: MockContextPrisma;
 let ctx: Context;
 
 beforeEach(() => {
-  mockCtx = createMockContext();
+  mockCtx = createMockContextPrisma();
   ctx = mockCtx as unknown as Context;
 });
 

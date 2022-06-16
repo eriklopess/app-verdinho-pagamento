@@ -1,19 +1,19 @@
 import { NextFunction, Request, Response } from 'express';
 import Service from '../Services/Service';
 
-export default abstract class Controller<T> {
-  constructor(protected service: Service<T>) {}
+export type ResponseError = {
+  error: unknown;
+};
 
-  public async findById(
-    req: Request,
-    res: Response,
-    next: NextFunction,
-  ): Promise<typeof res | void> {
-    try {
-      const data = await this.service.findById(req.params.id);
-      return res.status(200).json(data);
-    } catch (error) {
-      return next();
-    }
+export interface RequestWithBody<T> extends Request {
+  body: T;
+}
+export default abstract class Controller<T> {
+  constructor(protected service: Service<T>) {
   }
+
+  abstract create(req: RequestWithBody<T>,
+    res: Response<T | ResponseError | void>,
+    next: NextFunction):
+  Promise<typeof res>;
 }

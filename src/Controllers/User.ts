@@ -1,24 +1,29 @@
 /* eslint-disable @typescript-eslint/no-useless-constructor */
-import { NextFunction, Request, Response } from 'express';
+import { Response } from 'express';
+import HttpException from '../HttpException/HttpException';
 import IUser from '../interfaces/User';
 import Service from '../Services/Service';
-import Controller from './Controller';
+import Controller, { RequestWithBody, ResponseError } from './Controller';
 
 export default class UserController extends Controller<IUser> {
   constructor(service: Service<IUser>) {
     super(service);
   }
 
-  public async findById(
-    req: Request,
-    res: Response,
-    next: NextFunction,
-  ): Promise<typeof res | void> {
+  create = async (
+    req: RequestWithBody<IUser>,
+    res: Response<IUser | ResponseError | void>,
+  ): Promise<typeof res> => {
     try {
-      const data = await this.service.findById(req.params.id);
-      return res.status(200).json(data);
-    } catch (error) {
-      return next();
+      const user = await this.service.create(req.body);
+      if (user instanceof HttpException) throw new HttpException(user.message, user.status);
+      return res.status(201).json(user);
+    } catch (err) {
+      console.log(err);
+      if (err instanceof HttpException) {
+        return res.status(err.status).json({ error: err.message });
+      }
+      return res.status(500).json({ error: 'Internal server error' });
     }
-  }
+  };
 }
