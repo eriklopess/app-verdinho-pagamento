@@ -25,8 +25,7 @@ model User {
 model Account {
   id        String   @id @default(cuid())
   userId    String
-  isActive  Boolean
-  User      User     @relation(fields: [userId, isActive], references: [id, isActive])
+  User      User     @relation(fields: [userId], references: [id])
   balance   Float
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())

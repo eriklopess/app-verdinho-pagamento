@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client';
+import HttpException from '../HttpException/HttpException';
 
 export default abstract class Service<T> {
   constructor(protected prisma: PrismaClient) {

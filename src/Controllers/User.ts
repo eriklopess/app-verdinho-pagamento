@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-useless-constructor */
 import { NextFunction, Request, Response } from 'express';
 import IUser from '../interfaces/User';
 import Service from '../Services/Service';

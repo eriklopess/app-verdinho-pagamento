@@ -4,6 +4,5 @@ module.exports = {
   rootDir: './test',
   testSequencer: './config/sequencer.js',
   // setupFilesAfterEnv: ['./config/setup.js'],
-  testRegex: './*\\.test\\.ts$',
   testTimeout: 10000,
 };
