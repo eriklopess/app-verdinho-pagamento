@@ -12,23 +12,13 @@ describe('create', () => {
   });
 
   it('should throw an error when user already exists', async () => {
-    const user = {
-      id: '0a5071eb-32a0-48c2-8a4b-c85534056387',
-      name: 'John Doe',
-      email: 'John@email.com',
-      password: '123456',
-      cpf: '123',
-      isActive: true,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    };
     prismaMock.user.create.mockRejectedValue({
       message: 'User already exists',
       statusCode: 400,
     });
     const userService = new UserService(prisma);
     try {
-      await userService.create(user);
+      await userService.create(userMock);
     } catch (error: any) {
       expect(error.message).toEqual('User already exists');
       expect(error.statusCode).toEqual(400);

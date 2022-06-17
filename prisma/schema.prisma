@@ -16,6 +16,7 @@ model User {
   name      String
   email     String   @unique
   password  String
+  role      String
   isActive  Boolean  @default(true)
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
@@ -23,8 +24,7 @@ model User {
 }
 
 model Account {
-  id        String   @id @default(cuid())
-  userId    String
+  userId    String   @id
   User      User     @relation(fields: [userId], references: [id])
   balance   Float    @default(1000.0)
   createdAt DateTime @default(now())

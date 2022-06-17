@@ -27,7 +27,12 @@ export default class UserService extends Service<IUser> {
   public async create(data: IUser): Promise<IUser | HttpException> {
     await this.hasEmail(data.email);
     await this.hasCpf(data.cpf);
-    const user = await this.prisma.user.create({ data });
+    const user = await this.prisma.user.create({
+      data: {
+        ...data,
+        Account: { create: { balance: 1000 } },
+      },
+    });
     return user;
   }
 

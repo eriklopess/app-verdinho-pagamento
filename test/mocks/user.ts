@@ -4,6 +4,7 @@ export const userMock = {
   email: 'John@email.com',
   password: '123456',
   cpf: '123',
+  role: 'user',
   isActive: true,
   createdAt: new Date(),
   updatedAt: new Date(),
