@@ -1,8 +1,6 @@
-import { PrismaClient } from '@prisma/client';
 import UserController from './User';
 import UserService from '../Services/User';
-
-const prisma = new PrismaClient();
+import prisma from '../client/client';
 
 const userService = new UserService(prisma);
 const userController = new UserController(userService);
