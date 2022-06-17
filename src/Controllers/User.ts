@@ -11,7 +11,7 @@ export default class UserController extends Controller<IUser> {
     super(service);
   }
 
-  create = async (
+  public create = async (
     req: RequestWithBody<IUser>,
     res: Response<IUser | ResponseError | void>,
   ): Promise<typeof res> => {
@@ -28,7 +28,7 @@ export default class UserController extends Controller<IUser> {
     }
   };
 
-  login = async (
+  public login = async (
     req: RequestWithBody<IUser>,
     res: Response<ILoginUser | ResponseError | void>,
   ): Promise<typeof res> => {
