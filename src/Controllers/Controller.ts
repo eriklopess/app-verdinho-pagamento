@@ -8,8 +8,8 @@ export type ResponseError = {
 export interface RequestWithBody<T> extends Request {
   body: T;
 }
-export default abstract class Controller<T> {
-  constructor(protected service: Service<T>) {
+export default abstract class Controller<T, U> {
+  constructor(protected service: Service<T, U>) {
   }
 
   abstract create(req: RequestWithBody<T>,

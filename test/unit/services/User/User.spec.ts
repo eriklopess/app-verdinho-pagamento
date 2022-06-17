@@ -1,4 +1,4 @@
-import { userMock } from '../../../mocks/user';
+import userMock from '../../../mocks/user';
 import UserService from '../../../../src/Services/User';
 import prismaMock from '../../../singleton';
 import prisma from '../../../../src/client/client';

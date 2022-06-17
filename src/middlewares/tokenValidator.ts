@@ -1,14 +1,9 @@
 import { NextFunction, Request, Response } from 'express';
-import { JwtPayload } from 'jsonwebtoken';
 import { ResponseError } from '../Controllers/Controller';
 import tokenHelper from '../helpers/token';
 
-interface RequestWithUser extends Request {
-  user?: JwtPayload;
-}
-
 export default function tokenValidator(
-  req: RequestWithUser,
+  req: Request,
   res: Response<ResponseError>,
   next: NextFunction,
 ): typeof res | void {
@@ -19,8 +14,7 @@ export default function tokenValidator(
   }
 
   try {
-    const decoded = tokenHelper.verifyToken(token);
-    req.user = decoded as JwtPayload;
+    tokenHelper.verifyToken(token);
     return next();
   } catch (err) {
     return res.status(401).json({ error: 'Invalid token' });
