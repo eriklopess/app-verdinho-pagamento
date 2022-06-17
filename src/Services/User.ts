@@ -27,9 +27,15 @@ export default class UserService extends Service<IUser> {
   public async create(data: IUser): Promise<IUser | HttpException> {
     await this.hasEmail(data.email);
     await this.hasCpf(data.cpf);
-    const user = await this.prisma.user.create({
-      data,
-    });
+    const user = await this.prisma.user.create({ data });
+    return user;
+  }
+
+  public async find(email: string): Promise<IUser | HttpException> {
+    const user = await this.prisma.user.findUnique({ where: { email } });
+    if (!user) {
+      throw new HttpException('User not found', 404);
+    }
     return user;
   }
 }

@@ -1,4 +1,4 @@
-enum Role {
+export enum Role {
   USER = 'USER',
   SHOPKEEPER = 'SHOPKEEPER',
 }
@@ -13,4 +13,8 @@ export default interface IUser {
   isActive?: boolean;
   createdAt?: Date;
   updatedAt?: Date;
+}
+
+export interface ILoginUser extends IUser {
+  token: string;
 }
